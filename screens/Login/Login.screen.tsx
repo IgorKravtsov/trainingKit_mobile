@@ -1,10 +1,14 @@
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 
 import { Login } from '../../api/auth/auth.api'
+import { AsyncStorageKey } from '../../common'
 
 import { useHttpRequest } from '../../hooks'
+import { AsyncStorageUser } from '../../interfaces'
 import { setUser } from '../../redux/slices/user.slice'
+import { saveUserToStorage } from '../../util'
 
 import Form from './components/Form'
 
@@ -14,7 +18,11 @@ const LoginScreen: React.FC = (): React.ReactElement => {
   const [login] = useHttpRequest(Login, { action: setUser })
 
   const onSubmit = async (data: SubmitLogin) => {
-    await login(data)
+    const response = await login(data)
+    if (response) {
+      const { email, password } = data
+      await saveUserToStorage({ email, password })
+    }
   }
 
   return (

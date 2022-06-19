@@ -12,6 +12,8 @@ import { GetOrganizations } from '../../api/organization/organization'
 
 import Form from './components/Form'
 import { SubmitRegister } from './interfaces'
+import { saveUserToStorage } from '../../util'
+import { AsyncStorageUser } from '../../interfaces'
 
 const RegisterScreen: React.FC = (): React.ReactElement => {
   const [register] = useHttpRequest(Register)
@@ -21,7 +23,11 @@ const RegisterScreen: React.FC = (): React.ReactElement => {
 
   const onSubmit = async (data: SubmitRegister) => {
     const user = await register(data)
-    user && dispatch(setUser(user))
+    if (user) {
+      dispatch(setUser(user))
+      const { email, password } = data
+      await saveUserToStorage({ email, password })
+    }
   }
 
   const getServerData = async () => {
