@@ -1,13 +1,13 @@
 import React from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
 
-import { CannotVisitTraining, CannotVisitTrainingType, Training } from '../../../api/training/types'
+import { CannotVisitTraining, CannotVisitTrainingType, Training } from '../../../../api/training/types'
 
-import { formatDate, formatTime } from '../../../util'
+import { formatDate, formatTime } from '../../../../util'
 
-import Button from '../../../components/Button/Button'
+import Button from '../../../../components/Button/Button'
 import TrainersItem from './TrainersItem'
-import { darkTheme } from '../../../common'
+import { darkTheme } from '../../../../common'
 
 interface LearnerTrainingListItemProps {
   item: Training
@@ -52,7 +52,7 @@ const LearnerTrainingListItem: React.FC<LearnerTrainingListItemProps> = ({ gymIm
 
   return (
     <View style={styles.container}>
-      <Image source={isGymImg ? { uri: gymImg } : require('../../../assets/no-image-icon.png')} width={100} height={100} style={styles.img} />
+      <Image source={isGymImg ? { uri: gymImg } : require('../../../../assets/no-image-icon.png')} width={100} height={100} style={styles.img} />
       <View>
         <Text style={styles.title}>{title}</Text>
         <TrainersItem trainers={item.trainers} />

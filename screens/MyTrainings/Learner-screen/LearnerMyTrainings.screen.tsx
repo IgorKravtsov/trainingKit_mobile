@@ -9,8 +9,8 @@ import { useAppDispatch, useAppSelector } from '../../../redux/hooks'
 import { selectMyTrainings, setMyLearnerTrainings } from '../../../redux/slices/myTrainings.slice'
 import { transformMyTrainingsToSectionData } from '../../../util'
 import NoData from '../components/NoData'
-import LearnerTrainingListItem from './LearnerTrainingListItem'
-import SectionTitle from './SectionTitle'
+import LearnerTrainingListItem from './components/LearnerTrainingListItem'
+import SectionTitle from './components/SectionTitle'
 
 const LearnerMyTrainingsScreen: React.FC = (): React.ReactElement => {
   const { user } = useAuthContext()

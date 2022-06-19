@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text } from 'react-native'
-import { PublicAppUserDto } from '../../../api/user/interfaces'
-import { darkTheme } from '../../../common'
+import { PublicAppUserDto } from '../../../../api/user/interfaces'
+import { darkTheme } from '../../../../common'
 
 interface TrainersItemProps {
   trainers: PublicAppUserDto[]

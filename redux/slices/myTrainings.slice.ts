@@ -1,14 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { GymTraining } from '../../api/training/types'
+import { GymTraining, PartTraining } from '../../api/training/types'
 import { RootState } from '../store'
 
 interface MyTrainingsState {
   myLearnerTrainings: GymTraining[]
-  myTrainerTrainings: GymTraining[]
+  myTrainerTrainings: PartTraining[]
 }
 
 const initialState: MyTrainingsState = {
   myLearnerTrainings: [],
+  myTrainerTrainings: [],
 }
 
 const myTrainings = createSlice({
@@ -18,9 +19,12 @@ const myTrainings = createSlice({
     setMyLearnerTrainings(state, action: PayloadAction<GymTraining[]>) {
       state.myLearnerTrainings = action.payload
     },
+    setMyTrainerTrainings(state, action: PayloadAction<PartTraining[]>) {
+      state.myTrainerTrainings = action.payload
+    },
   },
 })
 
-export const { setMyLearnerTrainings } = myTrainings.actions
+export const { setMyLearnerTrainings, setMyTrainerTrainings } = myTrainings.actions
 export const myTrainingsReducer = myTrainings.reducer
 export const selectMyTrainings = (state: RootState) => state.myTrainings

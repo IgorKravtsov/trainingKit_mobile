@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { darkTheme } from '../../../common'
+import { darkTheme } from '../../../../common'
 
 const SectionTitle: React.FC = ({ children }): React.ReactElement => {
   return (
