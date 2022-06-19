@@ -1,19 +1,36 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React, { useEffect } from 'react'
+import { StyleSheet, View } from 'react-native'
+
+import { useHttpRequest } from '../../hooks'
+import { useAppDispatch } from '../../redux/hooks'
 
 import { Register } from '../../api/auth/auth.api'
-import { useHttpRequest } from '../../hooks'
+import { GetOrganizations } from '../../api/organization/organization'
+
+import { setOrganizations } from '../../redux/slices/organizations.slice'
 
 import Form from './components/Form'
 import { SubmitRegister } from './interfaces'
 
 const RegisterScreen: React.FC = (): React.ReactElement => {
   const [register] = useHttpRequest(Register)
+  const [getOrganizations] = useHttpRequest(GetOrganizations)
+
+  const dispatch = useAppDispatch()
 
   const onSubmit = (data: SubmitRegister) => {
     register(data)
     console.log(data)
   }
+
+  const getServerData = async () => {
+    const response = await getOrganizations()
+    response && dispatch(setOrganizations(response.organizations))
+  }
+
+  useEffect(() => {
+    getServerData()
+  }, [])
 
   return (
     <View style={styles.container}>
@@ -29,6 +46,5 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 58,
     justifyContent: 'center',
-    // alignItems: 'center',
   },
 })
