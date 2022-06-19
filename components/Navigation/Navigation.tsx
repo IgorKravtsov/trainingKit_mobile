@@ -1,45 +1,14 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
-import { createDrawerNavigator } from '@react-navigation/drawer'
 
-import LoginScreen from '../../screens/Login/Login.screen'
-import RegisterScreen from '../../screens/Register/Register.screen'
+import { useAuthContext } from '../AuthProvider/AuthProvider'
 
-import { darkTheme, ScreenNames } from '../../common'
-
-const Drawer = createDrawerNavigator()
+import AuthNavigation from './AuthNavigation'
+import AnonymusNavigation from './AnonymusNavigation'
 
 const Navigation: React.FC = (): React.ReactElement => {
-  return (
-    <NavigationContainer>
-      <Drawer.Navigator
-        screenOptions={{
-          headerStyle: { backgroundColor: darkTheme.headerBackground },
-          headerTintColor: darkTheme.textMain,
-          sceneContainerStyle: { backgroundColor: darkTheme.secondaryMain },
-          drawerContentStyle: { backgroundColor: darkTheme.secondaryMain },
-          drawerInactiveTintColor: darkTheme.textMain,
-          drawerActiveTintColor: darkTheme.secondaryMain,
-          drawerActiveBackgroundColor: darkTheme.primaryMain,
-        }}
-      >
-        <Drawer.Screen
-          name={ScreenNames.Login}
-          component={LoginScreen}
-          options={{
-            title: 'Login',
-          }}
-        />
-        <Drawer.Screen
-          name={ScreenNames.Register}
-          component={RegisterScreen}
-          options={{
-            title: 'Register',
-          }}
-        />
-      </Drawer.Navigator>
-    </NavigationContainer>
-  )
+  const { isAuth } = useAuthContext()
+  return <NavigationContainer>{isAuth ? <AuthNavigation /> : <AnonymusNavigation />}</NavigationContainer>
 }
 
 export default Navigation

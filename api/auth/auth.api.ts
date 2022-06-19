@@ -12,3 +12,8 @@ export const Register = async (request: RegisterRequest): Promise<AppUser> => {
   const { data } = await $api.post<AppUser>('auth/register', request)
   return data
 }
+
+export const Logout = async () => {
+  const { data } = await $api.post<{ message: string }>('auth/logout')
+  return data
+}

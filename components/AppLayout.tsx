@@ -18,13 +18,10 @@ interface AppLayoutProps {
   currentUserCredentials: AsyncStorageUser | null
 }
 
-const AppLayout: React.FC<AppLayoutProps> = ({ onLayoutRootView, currentUserCredentials }): React.ReactElement => {
+const AppLayout: React.FC<AppLayoutProps> = ({ currentUserCredentials }): React.ReactElement => {
   const { isLoading } = useAppSelector(selectLoadingIndicator)
 
-  const { user } = useAuthContext()
-
   const [login] = useHttpRequest(Login)
-
   const dispatch = useAppDispatch()
 
   const getUser = async (currentUserCredentials: AsyncStorageUser | null) => {
@@ -37,10 +34,6 @@ const AppLayout: React.FC<AppLayoutProps> = ({ onLayoutRootView, currentUserCred
   useEffect(() => {
     getUser(currentUserCredentials)
   }, [currentUserCredentials])
-
-  React.useEffect(() => {
-    console.log('===user===', user)
-  }, [user])
 
   return (
     <>
