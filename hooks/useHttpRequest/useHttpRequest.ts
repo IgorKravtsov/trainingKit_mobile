@@ -26,7 +26,7 @@ export function useHttpRequest<Args, Res>(
 
       return data
     } catch (err: any) {
-      console.log(err)
+      config.logError && console.log(err)
 
       let message = err?.response?.data?.message
       if (err?.message === 'Network Error') {
@@ -34,7 +34,7 @@ export function useHttpRequest<Args, Res>(
       }
 
       dispatch(setError(message))
-      Alert.alert("Помилка з'єднання з сервером", message)
+      Alert.alert('Помилка', message)
       // setTimeout(() => {
       //   dispatch(clearError())
       // }, config.clearErrorTime)

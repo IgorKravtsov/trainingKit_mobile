@@ -4,10 +4,11 @@ import { StyleSheet, View } from 'react-native'
 import { useHttpRequest } from '../../hooks'
 import { useAppDispatch } from '../../redux/hooks'
 
+import { setOrganizations } from '../../redux/slices/organizations.slice'
+import { setUser } from '../../redux/slices/user.slice'
+
 import { Register } from '../../api/auth/auth.api'
 import { GetOrganizations } from '../../api/organization/organization'
-
-import { setOrganizations } from '../../redux/slices/organizations.slice'
 
 import Form from './components/Form'
 import { SubmitRegister } from './interfaces'
@@ -18,8 +19,9 @@ const RegisterScreen: React.FC = (): React.ReactElement => {
 
   const dispatch = useAppDispatch()
 
-  const onSubmit = (data: SubmitRegister) => {
-    register(data)
+  const onSubmit = async (data: SubmitRegister) => {
+    const user = await register(data)
+    user && dispatch(setUser(user))
   }
 
   const getServerData = async () => {

@@ -21,11 +21,11 @@ interface FormProps {
 const Form: React.FC<FormProps> = ({ onSubmit }): React.ReactElement => {
   const { organizations } = useAppSelector(selectOrganizations)
 
-  const [name, setName] = useState('')
-  const [lastName, setLastName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [confirmPass, setConfirmPass] = useState('')
+  const [name, setName] = useState('John')
+  const [lastName, setLastName] = useState('Doe')
+  const [email, setEmail] = useState('j@d.com')
+  const [password, setPassword] = useState('123')
+  const [confirmPass, setConfirmPass] = useState('123')
 
   const [dob, setDob] = useState<Date>(new Date())
   const [selectedOrganization, setSelectedOrganization] = useState<ModalOptionOrganization | undefined>()
