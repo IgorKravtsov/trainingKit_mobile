@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react'
 import { StatusBar } from 'expo-status-bar'
 
+import { Login } from '../api/auth/auth.api'
+
 import { useAppDispatch, useAppSelector } from '../redux/hooks'
 import { selectLoadingIndicator } from '../redux/slices/loading-indicator.slice'
+import { setUser } from '../redux/slices/user.slice'
+
+import { useHttpRequest } from '../hooks'
 
 import AppLoader from './AppLoader/AppLoader'
-import Navigation from './Navigation/Navigation'
-import { View } from 'react-native'
+import Navigation from '../Navigation/Navigation'
+
 import { AsyncStorageUser } from '../interfaces'
-import { useHttpRequest } from '../hooks'
-import { Login } from '../api/auth/auth.api'
-import { setUser } from '../redux/slices/user.slice'
-import { useAuthContext } from './AuthProvider/AuthProvider'
 
 interface AppLayoutProps {
   onLayoutRootView: () => void

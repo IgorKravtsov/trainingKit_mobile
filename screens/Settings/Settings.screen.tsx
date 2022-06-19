@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+
 import { AsyncStorageKey } from '../../common'
 
 import { Logout } from '../../api/auth/auth.api'
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 24,
+    paddingHorizontal: 24,
   },
   btn: {
     width: '100%',

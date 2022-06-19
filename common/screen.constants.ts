@@ -3,4 +3,8 @@ export enum ScreenNames {
   Register = 'register',
   Home = 'home',
   Settings = 'settings',
+
+  MyTrainings = 'myTrainings',
+  MyTrainingsLearner = 'myTrainingsLearner',
+  MyTrainingsTrainer = 'myTrainingsTrainer',
 }

@@ -1,14 +1,15 @@
-import React from 'react'
 import { createDrawerNavigator } from '@react-navigation/drawer'
-
-import LoginScreen from '../../screens/Login/Login.screen'
-import RegisterScreen from '../../screens/Register/Register.screen'
+import React from 'react'
 
 import { darkTheme, ScreenNames } from '../../common'
 
+import HomeScreen from '../../screens/Home/Home.screen'
+import SettingsScreen from '../../screens/Settings/Settings.screen'
+import MyTrainingsTabs from './MyTrainingsTabs'
+
 const Drawer = createDrawerNavigator()
 
-const AnonymusNavigation: React.FC = (): React.ReactElement => {
+const AuthNavigation: React.FC = (): React.ReactElement => {
   return (
     <Drawer.Navigator
       screenOptions={{
@@ -22,21 +23,28 @@ const AnonymusNavigation: React.FC = (): React.ReactElement => {
       }}
     >
       <Drawer.Screen
-        name={ScreenNames.Login}
-        component={LoginScreen}
+        name={ScreenNames.Home}
+        component={HomeScreen}
         options={{
-          title: 'Login',
+          title: 'Home',
         }}
       />
       <Drawer.Screen
-        name={ScreenNames.Register}
-        component={RegisterScreen}
+        name={ScreenNames.Settings}
+        component={SettingsScreen}
         options={{
-          title: 'Register',
+          title: 'Settings',
+        }}
+      />
+      <Drawer.Screen
+        name={ScreenNames.MyTrainings}
+        component={MyTrainingsTabs}
+        options={{
+          title: 'My trainings',
         }}
       />
     </Drawer.Navigator>
   )
 }
 
-export default AnonymusNavigation
+export default AuthNavigation
