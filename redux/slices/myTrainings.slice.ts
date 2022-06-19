@@ -4,6 +4,7 @@ import { RootState } from '../store'
 
 interface MyTrainingsState {
   myLearnerTrainings: GymTraining[]
+  myTrainerTrainings: GymTraining[]
 }
 
 const initialState: MyTrainingsState = {

@@ -1,8 +1,10 @@
 import { $api } from '../config/axios.config'
+import { PublicAppUserDto } from '../user/interfaces'
 import {
   CreateOneTrainingRequest,
   GetLearnerTrainingHistoryRequest,
   GetLearnerTrainingHistoryResponse,
+  GetTrainingLearnersRequest,
   GetUserTrainingsRequest,
   GetUserTrainingsResponse,
   MarkVisitingTrainingRequest,
@@ -22,6 +24,11 @@ export const MarkVisitingTraining = async (request: MarkVisitingTrainingRequest)
 
 export const GetLearnerTrainingHistory = async (request: GetLearnerTrainingHistoryRequest): Promise<GetLearnerTrainingHistoryResponse> => {
   const { data } = await $api.post<GetLearnerTrainingHistoryResponse>('training/get-learner-training-history', request)
+  return data
+}
+
+export const GetTrainingLearners = async (request: GetTrainingLearnersRequest): Promise<PublicAppUserDto> => {
+  const { data } = await $api.post<PublicAppUserDto>('training/get-training-learners', request)
   return data
 }
 
