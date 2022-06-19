@@ -10,7 +10,7 @@ import { setUser } from '../redux/slices/user.slice'
 import { useHttpRequest } from '../hooks'
 
 import AppLoader from './AppLoader/AppLoader'
-import Navigation from '../Navigation/Navigation'
+import Navigation from '../navigation/Navigation'
 
 import { AsyncStorageUser } from '../interfaces'
 

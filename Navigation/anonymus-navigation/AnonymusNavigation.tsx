@@ -1,10 +1,10 @@
 import React from 'react'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 
-import LoginScreen from '../screens/Login/Login.screen'
-import RegisterScreen from '../screens/Register/Register.screen'
+import LoginScreen from '../../screens/Login/Login.screen'
+import RegisterScreen from '../../screens/Register/Register.screen'
 
-import { darkTheme, ScreenNames } from '../common'
+import { darkTheme, ScreenNames } from '../../common'
 
 const Drawer = createDrawerNavigator()
 

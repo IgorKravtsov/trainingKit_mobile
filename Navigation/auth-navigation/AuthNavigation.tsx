@@ -30,17 +30,17 @@ const AuthNavigation: React.FC = (): React.ReactElement => {
         }}
       />
       <Drawer.Screen
-        name={ScreenNames.Settings}
-        component={SettingsScreen}
-        options={{
-          title: 'Settings',
-        }}
-      />
-      <Drawer.Screen
         name={ScreenNames.MyTrainings}
         component={MyTrainingsTabs}
         options={{
           title: 'My trainings',
+        }}
+      />
+      <Drawer.Screen
+        name={ScreenNames.Settings}
+        component={SettingsScreen}
+        options={{
+          title: 'Settings',
         }}
       />
     </Drawer.Navigator>

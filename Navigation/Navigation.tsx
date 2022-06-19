@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { useAuthContext } from '../components/AuthProvider/AuthProvider'
 
 import AuthNavigation from './auth-navigation/AuthNavigation'
-import AnonymusNavigation from './AnonymusNavigation'
+import AnonymusNavigation from './anonymus-navigation/AnonymusNavigation'
 
 const Navigation: React.FC = (): React.ReactElement => {
   const { isAuth } = useAuthContext()

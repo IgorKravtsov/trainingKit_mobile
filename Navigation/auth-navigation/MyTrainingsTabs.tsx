@@ -5,11 +5,13 @@ import { BlurView } from 'expo-blur'
 
 import { MaterialIcons } from '@expo/vector-icons'
 
-import { darkTheme, ScreenNames } from '../../common'
-import LearnerMyTrainingsScreen from '../../screens/MyTrainings/LearnerMyTrainings.screen'
-import TrainerMyTrainingsScreen from '../../screens/MyTrainings/TrainerMyTrainings.screen'
-import { useAuthContext } from '../../components/AuthProvider/AuthProvider'
 import { UserRoles } from '../../api/user/enums'
+
+import { darkTheme, ScreenNames } from '../../common'
+import { useAuthContext } from '../../components/AuthProvider/AuthProvider'
+
+import LearnerMyTrainingsScreen from '../../screens/MyTrainings/Learner-screen/LearnerMyTrainings.screen'
+import TrainerMyTrainingsScreen from '../../screens/MyTrainings/Trainer-screen/TrainerMyTrainings.screen'
 
 const Tab = createBottomTabNavigator()
 
@@ -40,7 +42,7 @@ const MyTrainingsTabs: React.FC = (): React.ReactElement => {
           title: 'I am Learner',
         }}
       />
-      {role === UserRoles.LEARNER && (
+      {role !== UserRoles.LEARNER && (
         <Tab.Screen
           name={ScreenNames.MyTrainingsTrainer}
           component={TrainerMyTrainingsScreen}
