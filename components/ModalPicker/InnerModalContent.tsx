@@ -2,6 +2,7 @@ import React from 'react'
 import { Dimensions, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
 
 import { ModalPickerOption } from '../../interfaces'
+import NoContent from './NoContent'
 import OptionItem from './OptionItem'
 
 interface InnerModalContentProps {
@@ -23,9 +24,7 @@ const InnerModalContent: React.FC<InnerModalContentProps> = ({ options, changeVi
     <TouchableOpacity onPress={() => changeVisibility(false)} style={styles.container}>
       <View style={[styles.modal, { width: WIDTH - 20, height: HEIGHT / 2 }]}>
         <ScrollView>
-          {options.map(option => (
-            <OptionItem key={option.label} option={option} onPressItem={onPressItem} />
-          ))}
+          {options.length === 0 ? <NoContent /> : options.map(option => <OptionItem key={option.label} option={option} onPressItem={onPressItem} />)}
         </ScrollView>
       </View>
     </TouchableOpacity>

@@ -3,15 +3,15 @@ import { Organization } from '../../api/organization/types'
 import { RootState } from '../store'
 
 interface OrganizationsState {
-  organizations: Organization[] | null
+  organizations: Organization[]
 }
 
 const initialState: OrganizationsState = {
-  organizations: null,
+  organizations: [],
 }
 
 const organizations = createSlice({
-  name: '',
+  name: 'organizations',
   initialState,
   reducers: {
     setOrganizations(state, action: PayloadAction<Organization[]>) {

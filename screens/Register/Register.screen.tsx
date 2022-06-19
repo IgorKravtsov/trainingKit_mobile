@@ -20,7 +20,6 @@ const RegisterScreen: React.FC = (): React.ReactElement => {
 
   const onSubmit = (data: SubmitRegister) => {
     register(data)
-    console.log(data)
   }
 
   const getServerData = async () => {
@@ -44,7 +43,7 @@ export default RegisterScreen
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingVertical: 58,
+    paddingVertical: 20,
     justifyContent: 'center',
   },
 })

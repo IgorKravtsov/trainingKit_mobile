@@ -1,19 +1,26 @@
 import React, { useState } from 'react'
-import { Alert, Modal, StyleSheet, View } from 'react-native'
+import { Alert, StyleSheet, View } from 'react-native'
 import { DateTimePickerEvent } from '@react-native-community/datetimepicker'
+
+import { useAppSelector } from '../../../redux/hooks'
+import { selectOrganizations } from '../../../redux/slices/organizations.slice'
+
+import { checkIsEmail } from '../../../util'
 
 import Button from '../../../components/Button/Button'
 import Input from '../../../components/Input/Input'
 import DatePicker from '../../../components/DatePicker/DatePicker'
-import { ModalOptionOrganization, SubmitRegister } from '../interfaces'
-import { checkIsEmail } from '../../../util'
 import ModalPicker from '../../../components/ModalPicker/ModalPicker'
+
+import { ModalOptionOrganization, SubmitRegister } from '../interfaces'
 
 interface FormProps {
   onSubmit: (data: SubmitRegister) => void
 }
 
 const Form: React.FC<FormProps> = ({ onSubmit }): React.ReactElement => {
+  const { organizations } = useAppSelector(selectOrganizations)
+
   const [name, setName] = useState('')
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
@@ -22,16 +29,6 @@ const Form: React.FC<FormProps> = ({ onSubmit }): React.ReactElement => {
 
   const [dob, setDob] = useState<Date>(new Date())
   const [selectedOrganization, setSelectedOrganization] = useState<ModalOptionOrganization | undefined>()
-  const [selectedOrganizations, setSelectedOrganizations] = useState<ModalOptionOrganization[]>([
-    { label: 'apple' },
-    { label: 'a' },
-    { label: 'b' },
-    { label: 'c' },
-    { label: 'd' },
-    { label: 'e' },
-    { label: 'f' },
-    { label: 'g' },
-  ])
 
   const handleOnChange = (e: DateTimePickerEvent, selectedDate?: Date) => {
     selectedDate && setDob(selectedDate)
@@ -62,6 +59,7 @@ const Form: React.FC<FormProps> = ({ onSubmit }): React.ReactElement => {
       password,
       DoB: dob,
       organizations: [selectedOrganization.id || 0],
+      // organizations: [],
     }
 
     onSubmit(data)
@@ -88,10 +86,15 @@ const Form: React.FC<FormProps> = ({ onSubmit }): React.ReactElement => {
         autoCapitalize='none'
         placeholder='myfantasticemail@mail.com'
       />
+
       <Input value={password} onChangeText={text => setPassword(text)} style={styles.input} label='Password' secureTextEntry />
+
       <Input value={confirmPass} onChangeText={text => setConfirmPass(text)} style={styles.input} label='Confirm password' secureTextEntry />
-      <ModalPicker options={selectedOrganizations} label='Organization' onChange={handleOnChangeOrganization} />
+
+      <ModalPicker options={organizations.map(o => ({ ...o, label: o?.title }))} label='Organization' onChange={handleOnChangeOrganization} />
+
       <DatePicker value={dob} onChange={handleOnChange} label='Date of birth' maximumDate={new Date()} />
+
       <Button onPress={handlePress} style={styles.btnContainer}>
         REGISTER
       </Button>
