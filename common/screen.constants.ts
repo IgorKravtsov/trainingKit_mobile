@@ -6,5 +6,8 @@ export enum ScreenNames {
 
   MyTrainings = 'myTrainings',
   MyTrainingsLearner = 'myTrainingsLearner',
+  MyTrainingsTrainerStack = 'myTrainingsTrainerStack',
+
   MyTrainingsTrainer = 'myTrainingsTrainer',
+  MyTrainingsTrainerTraining = 'myTrainingsTrainerTraining',
 }

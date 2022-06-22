@@ -20,7 +20,7 @@ const myTrainings = createSlice({
       state.myLearnerTrainings = action.payload
     },
     setMyTrainerTrainings(state, action: PayloadAction<PartTraining[]>) {
-      state.myTrainerTrainings = action.payload
+      state.myTrainerTrainings = action.payload.reverse()
     },
   },
 })

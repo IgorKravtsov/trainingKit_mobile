@@ -4,6 +4,7 @@ import { FlatList } from 'react-native-gesture-handler'
 
 import { Id } from '../../../api/user/types'
 import { GetTrainerTrainings } from '../../../api/user/user'
+import { darkTheme } from '../../../common'
 import { useAuthContext } from '../../../components/AuthProvider/AuthProvider'
 import { useHttpRequest } from '../../../hooks'
 import { useAppSelector } from '../../../redux/hooks'
@@ -38,15 +39,18 @@ const TrainerMyTrainingsScreen: React.FC = (): React.ReactElement => {
   }, [myTrainerTrainings])
 
   return (
-    <ScrollView contentContainerStyle={styles.container} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
+    // <ScrollView contentContainerStyle={styles.container} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
+    <View style={styles.container}>
       {myTrainerTrainings.length === 0 ? (
         <NoData />
       ) : (
         <>
+          <Text style={styles.title}>Training List</Text>
           <FlatList data={myTrainerTrainings} keyExtractor={item => item.id.toString()} renderItem={({ item }) => <TrainingListItem item={item} />} />
         </>
       )}
-    </ScrollView>
+      {/* </ScrollView> */}
+    </View>
   )
 }
 
@@ -58,5 +62,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 24,
+    paddingVertical: '10%',
+  },
+  title: {
+    color: darkTheme.textMain,
+    fontWeight: 'bold',
+    fontSize: 32,
   },
 })

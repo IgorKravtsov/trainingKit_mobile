@@ -12,6 +12,7 @@ import { useAuthContext } from '../../components/AuthProvider/AuthProvider'
 
 import LearnerMyTrainingsScreen from '../../screens/MyTrainings/Learner-screen/LearnerMyTrainings.screen'
 import TrainerMyTrainingsScreen from '../../screens/MyTrainings/Trainer-screen/TrainerMyTrainings.screen'
+import TrainerMyTrainingsStack from './TrainerMyTrainerStack'
 
 const Tab = createBottomTabNavigator()
 
@@ -44,8 +45,8 @@ const MyTrainingsTabs: React.FC = (): React.ReactElement => {
       />
       {role !== UserRoles.LEARNER && (
         <Tab.Screen
-          name={ScreenNames.MyTrainingsTrainer}
-          component={TrainerMyTrainingsScreen}
+          name={ScreenNames.MyTrainingsTrainerStack}
+          component={TrainerMyTrainingsStack}
           options={{
             tabBarIcon: iconProps => <MaterialIcons {...iconProps} name='admin-panel-settings' />,
             title: 'I am Trainer',

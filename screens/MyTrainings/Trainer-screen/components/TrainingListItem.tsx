@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 import { PartTraining } from '../../../../api/training/types'
 import { darkTheme } from '../../../../common'
@@ -10,14 +10,16 @@ interface TrainingListItemProps {
 }
 
 const TrainingListItem: React.FC<TrainingListItemProps> = ({ item }): React.ReactElement => {
-  console.log('fojnrguirebgurebguirebguiers', item)
+  const strDate = item.trainingDateTime as string
+  const date = strDate.split(' ')[0]
+  const time = strDate.split(' ')[1].substring(0, 5)
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{item.title}</Text>
-      {/* <Text style={styles.date}>
-        {formatDate(item.trainingDateTime)} - {formatTime(item.trainingDateTime)}
-      </Text> */}
-    </View>
+    <TouchableOpacity style={styles.container}>
+      <Text style={styles.title}>Gym: {item.title}</Text>
+      <Text style={styles.date}>
+        {date} - {time}
+      </Text>
+    </TouchableOpacity>
   )
 }
 
@@ -26,6 +28,7 @@ export default TrainingListItem
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginTop: 25,
   },
   title: {
     color: darkTheme.textMain,
