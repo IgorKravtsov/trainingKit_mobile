@@ -15,7 +15,15 @@ const TrainerMyTrainingsStack: React.FC = (): React.ReactElement => {
       }}
     >
       <Stack.Screen name={ScreenNames.MyTrainingsTrainer} component={TrainerMyTrainingsScreen} />
-      <Stack.Screen name={ScreenNames.MyTrainingsTrainerTraining} component={TrainerTrainingScreen} options={{ title: 'Training' }} />
+      <Stack.Screen
+        name={ScreenNames.MyTrainingsTrainerTraining}
+        component={TrainerTrainingScreen}
+        options={{
+          title: 'Training',
+          headerStyle: { backgroundColor: darkTheme.headerBackground },
+          headerTintColor: darkTheme.textMain,
+        }}
+      />
     </Stack.Navigator>
   )
 }

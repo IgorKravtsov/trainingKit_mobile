@@ -27,8 +27,8 @@ export const GetLearnerTrainingHistory = async (request: GetLearnerTrainingHisto
   return data
 }
 
-export const GetTrainingLearners = async (request: GetTrainingLearnersRequest): Promise<PublicAppUserDto> => {
-  const { data } = await $api.post<PublicAppUserDto>('training/get-training-learners', request)
+export const GetTrainingLearners = async (request: GetTrainingLearnersRequest): Promise<PublicAppUserDto[]> => {
+  const { data } = await $api.post<PublicAppUserDto[]>('training/get-training-learners', request)
   return data
 }
 
