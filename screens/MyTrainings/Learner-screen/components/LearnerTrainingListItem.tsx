@@ -1,22 +1,26 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { Image, StyleSheet, Text, View } from 'react-native'
 
 import { CannotVisitTraining, CannotVisitTrainingType, Training } from '../../../../api/training/types'
+import { Id } from '../../../../api/user/types'
 
 import { formatDate, formatTime } from '../../../../util'
 
 import Button from '../../../../components/Button/Button'
 import TrainersItem from './TrainersItem'
 import { darkTheme } from '../../../../common'
-import { useTranslation } from 'react-i18next'
+import { useAuthContext } from '../../../../components/AuthProvider/AuthProvider'
 
 interface LearnerTrainingListItemProps {
   item: Training
   gymImg?: string
+  onPress?: (learnerId: Id, trainingId: Id) => void
 }
 
-const LearnerTrainingListItem: React.FC<LearnerTrainingListItemProps> = ({ gymImg, item }): React.ReactElement => {
+const LearnerTrainingListItem: React.FC<LearnerTrainingListItemProps> = ({ gymImg, onPress, item }): React.ReactElement => {
   const { t } = useTranslation()
+  const { user } = useAuthContext()
   const isGymImg = !!gymImg
 
   const title = item.title.length > 24 ? item.title.substring(0, 24) + '...' : item.title
@@ -62,7 +66,12 @@ const LearnerTrainingListItem: React.FC<LearnerTrainingListItemProps> = ({ gymIm
           {formatDate(item.trainingDateTime)} - {formatTime(item.trainingDateTime)}
         </Text>
       </View>
-      <Button mode='flat' disabled={!isDisabledButton(item?.canBeVisited || true)} style={{ alignItems: 'center' }}>
+      <Button
+        onPress={() => onPress && onPress(user?.id || 0, item.id)}
+        mode='flat'
+        disabled={!isDisabledButton(item?.canBeVisited || true)}
+        style={{ alignItems: 'center' }}
+      >
         {getBtnText(item)}
       </Button>
     </View>

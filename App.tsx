@@ -1,5 +1,6 @@
 import { Provider } from 'react-redux'
 import * as SplashScreen from 'expo-splash-screen'
+import { LogBox } from 'react-native'
 
 import './locales/i18n'
 
@@ -71,3 +72,5 @@ export default function App() {
     </Provider>
   )
 }
+
+LogBox.ignoreAllLogs()

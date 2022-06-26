@@ -20,8 +20,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: darkTheme.textMain,
     fontSize: 28,
-    paddingTop: 20,
-    paddingBottom: 10,
+    paddingTop: 40,
+    paddingBottom: 1,
     textDecorationLine: 'underline',
   },
 })

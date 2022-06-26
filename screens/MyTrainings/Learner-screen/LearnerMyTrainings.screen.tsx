@@ -1,11 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { RefreshControl, ScrollView, SectionList, StyleSheet, Text, View } from 'react-native'
 
-import { GetUserTrainings } from '../../../api/training/training'
+import { GetUserTrainings, MarkVisitingTraining } from '../../../api/training/training'
 import { Id } from '../../../api/user/types'
 import { useAuthContext } from '../../../components/AuthProvider/AuthProvider'
 import { useHttpRequest } from '../../../hooks'
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks'
+import { hideLoading, showLoading } from '../../../redux/slices/loading-indicator.slice'
 import { selectMyTrainings, setMyLearnerTrainings } from '../../../redux/slices/myTrainings.slice'
 import { transformMyTrainingsToSectionData } from '../../../util'
 import NoData from '../components/NoData'
@@ -17,6 +18,7 @@ const LearnerMyTrainingsScreen: React.FC = (): React.ReactElement => {
   const { myLearnerTrainings } = useAppSelector(selectMyTrainings)
 
   const [getUserTrainings] = useHttpRequest(GetUserTrainings)
+  const [markVisitingTraining] = useHttpRequest(MarkVisitingTraining)
   const dispatch = useAppDispatch()
 
   const [daysOffset, setDaysOffset] = useState(7)
@@ -32,7 +34,6 @@ const LearnerMyTrainingsScreen: React.FC = (): React.ReactElement => {
     const startDate = new Date()
     const endDate = new Date()
     endDate.setDate(startDate.getDate() + daysOffset)
-    console.log({ learnerId, startDate, endDate })
 
     const response = await getUserTrainings({
       learnerId,
@@ -42,15 +43,22 @@ const LearnerMyTrainingsScreen: React.FC = (): React.ReactElement => {
     response && dispatch(setMyLearnerTrainings(response.trainings))
   }
 
-  // const markVisit = useCallback(
-  //   async (learnerId: Id, trainingId: Id) => {
-  //     dispatch(showLoading())
-  //     await dispatch(markVisitTraining({ userId: learnerId, trainingId }))
-  //     await getTrainings(learnerId)
-  //     dispatch(hideLoading())
-  //   },
-  //   [user, markVisitTraining, getTrainings],
-  // )
+  const markVisit = useCallback(
+    async (learnerId: Id, trainingId: Id) => {
+      const startDate = new Date()
+      const endDate = new Date()
+      endDate.setDate(startDate.getDate() + daysOffset)
+
+      await markVisitingTraining({ userId: learnerId, trainingId })
+      const response = await getUserTrainings({
+        learnerId,
+        startDate: startDate.toISOString().substring(0, 10),
+        endDate: endDate.toISOString().substring(0, 10),
+      })
+      response && dispatch(setMyLearnerTrainings(response.trainings))
+    },
+    [user, markVisitingTraining, getUserTrainings]
+  )
 
   useEffect(() => {
     getServerTrainings(user?.id || 0)
@@ -65,7 +73,7 @@ const LearnerMyTrainingsScreen: React.FC = (): React.ReactElement => {
         <SectionList
           sections={transformMyTrainingsToSectionData(myLearnerTrainings)}
           keyExtractor={item => item.id.toString()}
-          renderItem={({ item, section }) => <LearnerTrainingListItem item={item} gymImg={section.gym.img} />}
+          renderItem={({ item, section }) => <LearnerTrainingListItem item={item} gymImg={section.gym.img} onPress={markVisit} />}
           renderSectionHeader={({ section: { gym } }) => <SectionTitle>{gym.title}</SectionTitle>}
         />
       )}
