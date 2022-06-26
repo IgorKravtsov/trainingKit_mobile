@@ -13,12 +13,14 @@ import DatePicker from '../../../components/DatePicker/DatePicker'
 import ModalPicker from '../../../components/ModalPicker/ModalPicker'
 
 import { ModalOptionOrganization, SubmitRegister } from '../interfaces'
+import { useTranslation } from 'react-i18next'
 
 interface FormProps {
   onSubmit: (data: SubmitRegister) => void
 }
 
 const Form: React.FC<FormProps> = ({ onSubmit }): React.ReactElement => {
+  const { t } = useTranslation()
   const { organizations } = useAppSelector(selectOrganizations)
 
   const [name, setName] = useState('John')
@@ -68,35 +70,57 @@ const Form: React.FC<FormProps> = ({ onSubmit }): React.ReactElement => {
   return (
     <View style={styles.container}>
       <View style={styles.inputs}>
-        <Input value={name} onChangeText={text => setName(text)} style={styles.input} label='Name' placeholder='e.g. John' />
+        <Input
+          value={name}
+          onChangeText={text => setName(text)}
+          style={styles.input}
+          label={t('register:nameInput.label')}
+          placeholder={t('register:nameInput.placeholder')}
+        />
         <Input
           value={lastName}
           onChangeText={text => setLastName(text)}
           style={styles.input}
-          label='Last name'
+          label={t('register:lastNameInput.label')}
+          placeholder={t('register:lastNameInput.placeholder')}
           autoCapitalize='none'
-          placeholder='e.g. Doe'
         />
       </View>
       <Input
         value={email}
         onChangeText={text => setEmail(text)}
         style={styles.input}
-        label='Email'
+        label={t('register:emailInput.label')}
+        placeholder={t('register:emailInput.placeholder')}
         autoCapitalize='none'
-        placeholder='myfantasticemail@mail.com'
       />
 
-      <Input value={password} onChangeText={text => setPassword(text)} style={styles.input} label='Password' secureTextEntry />
+      <Input
+        value={password}
+        onChangeText={text => setPassword(text)}
+        style={styles.input}
+        label={t('register:passwordInput.label')}
+        secureTextEntry
+      />
 
-      <Input value={confirmPass} onChangeText={text => setConfirmPass(text)} style={styles.input} label='Confirm password' secureTextEntry />
+      <Input
+        value={confirmPass}
+        onChangeText={text => setConfirmPass(text)}
+        style={styles.input}
+        label={t('register:confirmPasswordInput.label')}
+        secureTextEntry
+      />
 
-      <ModalPicker options={organizations.map(o => ({ ...o, label: o?.title }))} label='Organization' onChange={handleOnChangeOrganization} />
+      <ModalPicker
+        options={organizations.map(o => ({ ...o, label: o?.title }))}
+        label={t('register:organizationInput.label')}
+        onChange={handleOnChangeOrganization}
+      />
 
-      <DatePicker value={dob} onChange={handleOnChange} label='Date of birth' maximumDate={new Date()} />
+      <DatePicker value={dob} onChange={handleOnChange} label={t('register:dobInput.label')} maximumDate={new Date()} />
 
       <Button onPress={handlePress} style={styles.btnContainer}>
-        REGISTER
+        {t('register:btnLabel')}
       </Button>
     </View>
   )

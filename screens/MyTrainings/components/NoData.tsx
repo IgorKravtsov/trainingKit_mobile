@@ -1,11 +1,14 @@
 import React from 'react'
-import { Alert, StyleSheet, Text, View } from 'react-native'
+import { useTranslation } from 'react-i18next'
+import { StyleSheet, Text, View } from 'react-native'
+
 import { darkTheme } from '../../../common'
 
 const NoData: React.FC = (): React.ReactElement => {
+  const { t } = useTranslation()
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Seems like there is no data</Text>
+      <Text style={styles.text}>{t('learnerTrainings:noData')}</Text>
     </View>
   )
 }

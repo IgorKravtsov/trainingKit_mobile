@@ -56,10 +56,6 @@ const LearnerMyTrainingsScreen: React.FC = (): React.ReactElement => {
     getServerTrainings(user?.id || 0)
   }, [])
 
-  React.useEffect(() => {
-    console.log('===myLearnerTrainings===', myLearnerTrainings)
-  }, [myLearnerTrainings])
-
   return (
     <ScrollView style={styles.container} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
       {myLearnerTrainings.length === 0 ? (

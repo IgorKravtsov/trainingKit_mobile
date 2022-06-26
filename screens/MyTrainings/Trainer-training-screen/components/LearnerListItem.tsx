@@ -1,5 +1,7 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { Image, StyleSheet, Text, View } from 'react-native'
+
 import { PublicAppUserDto } from '../../../../api/user/interfaces'
 import { darkTheme } from '../../../../common'
 
@@ -8,11 +10,16 @@ interface LearnerListItemProps {
 }
 
 const LearnerListItem: React.FC<LearnerListItemProps> = ({ learner }): React.ReactElement => {
+  const { t } = useTranslation()
   return (
     <View style={styles.container}>
       {learner.photoURL && <Image source={{ uri: learner.photoURL }} style={{ width: 40, height: 40 }} />}
-      <Text style={styles.name}>Name: {learner.displayName}</Text>
-      <Text style={styles.email}>Email: {learner.email}</Text>
+      <Text style={styles.name}>
+        {t('training:learnerNameTitle')}: {learner.displayName}
+      </Text>
+      <Text style={styles.email}>
+        {t('training:learnerEmailTitle')}: {learner.email}
+      </Text>
     </View>
   )
 }

@@ -11,10 +11,13 @@ import { Id } from '../../../api/user/types'
 
 import LearnerList from './components/LearnerList'
 import Title from '../../../components/Title/Title'
+import { useTranslation } from 'react-i18next'
 
 type RouteParams = RouteProp<MyTrainingsTrainerParamList, ScreenNames.MyTrainingsTrainerTraining>
 
 const TrainerTrainingScreen: React.FC = (): React.ReactElement => {
+  const { t } = useTranslation()
+
   const route = useRoute<RouteParams>()
   const { trainingId } = route.params
 
@@ -33,7 +36,9 @@ const TrainerTrainingScreen: React.FC = (): React.ReactElement => {
 
   return (
     <ScrollView>
-      <Title>Learners of training {trainingId}</Title>
+      <Title>
+        {t('training:learnersList')} {trainingId}
+      </Title>
       <View style={styles.listContainer}>
         <LearnerList learners={learnerList} />
       </View>

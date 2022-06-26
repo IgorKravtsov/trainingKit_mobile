@@ -1,6 +1,8 @@
 import { Provider } from 'react-redux'
 import * as SplashScreen from 'expo-splash-screen'
 
+import './locales/i18n'
+
 import { store } from './redux/store'
 import AppLayout from './components/AppLayout'
 import AuthProvider from './components/AuthProvider/AuthProvider'

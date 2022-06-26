@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { StyleSheet } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { BlurView } from 'expo-blur'
@@ -11,13 +12,13 @@ import { darkTheme, ScreenNames } from '../../common'
 import { useAuthContext } from '../../components/AuthProvider/AuthProvider'
 
 import LearnerMyTrainingsScreen from '../../screens/MyTrainings/Learner-screen/LearnerMyTrainings.screen'
-import TrainerMyTrainingsScreen from '../../screens/MyTrainings/Trainer-screen/TrainerMyTrainings.screen'
 import TrainerMyTrainingsStack from './TrainerMyTrainerStack'
 
 const Tab = createBottomTabNavigator()
 
 const MyTrainingsTabs: React.FC = (): React.ReactElement => {
   const { role } = useAuthContext()
+  const { t } = useTranslation()
   return (
     <Tab.Navigator
       screenOptions={{
@@ -40,7 +41,7 @@ const MyTrainingsTabs: React.FC = (): React.ReactElement => {
         component={LearnerMyTrainingsScreen}
         options={{
           tabBarIcon: iconProps => <MaterialIcons {...iconProps} name='sports-mma' />,
-          title: 'I am Learner',
+          title: t('learnerTrainings:bottomTitle'),
         }}
       />
       {role !== UserRoles.LEARNER && (
@@ -49,7 +50,7 @@ const MyTrainingsTabs: React.FC = (): React.ReactElement => {
           component={TrainerMyTrainingsStack}
           options={{
             tabBarIcon: iconProps => <MaterialIcons {...iconProps} name='admin-panel-settings' />,
-            title: 'I am Trainer',
+            title: t('trainerTrainings:bottomTitle'),
           }}
         />
       )}

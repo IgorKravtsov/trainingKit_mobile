@@ -10,10 +10,10 @@ import { setUser } from '../../redux/slices/user.slice'
 import { Register } from '../../api/auth/auth.api'
 import { GetOrganizations } from '../../api/organization/organization'
 
+import { saveUserToStorage } from '../../util'
+
 import Form from './components/Form'
 import { SubmitRegister } from './interfaces'
-import { saveUserToStorage } from '../../util'
-import { AsyncStorageUser } from '../../interfaces'
 
 const RegisterScreen: React.FC = (): React.ReactElement => {
   const [register] = useHttpRequest(Register)

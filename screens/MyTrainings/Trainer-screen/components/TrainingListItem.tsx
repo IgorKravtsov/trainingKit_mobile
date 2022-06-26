@@ -1,12 +1,10 @@
-import { useNavigation } from '@react-navigation/native'
-import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 import { PartTraining } from '../../../../api/training/types'
 import { Id } from '../../../../api/user/types'
-import { darkTheme, MyTrainingsTrainerParamList } from '../../../../common'
-
+import { darkTheme } from '../../../../common'
 
 interface TrainingListItemProps {
   item: PartTraining
@@ -14,11 +12,11 @@ interface TrainingListItemProps {
 }
 
 const TrainingListItem: React.FC<TrainingListItemProps> = ({ item, onPress }): React.ReactElement => {
+  const { t } = useTranslation()
+
   const strDate = item.trainingDateTime as string
   const date = strDate.split(' ')[0]
   const time = strDate.split(' ')[1].substring(0, 5)
-
-
 
   const handlePress = (id: Id) => {
     onPress && onPress(id)
@@ -26,7 +24,9 @@ const TrainingListItem: React.FC<TrainingListItemProps> = ({ item, onPress }): R
 
   return (
     <TouchableOpacity style={styles.container} onPress={() => handlePress(item.id)}>
-      <Text style={styles.title}>Gym: {item.title}</Text>
+      <Text style={styles.title}>
+        {t('trainerTrainings:gym')}: {item.title}
+      </Text>
       <Text style={styles.date}>
         {date} - {time}
       </Text>

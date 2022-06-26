@@ -1,6 +1,7 @@
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native'
 import { FlatList } from 'react-native-gesture-handler'
 
@@ -17,8 +18,11 @@ import TrainingListItem from './components/TrainingListItem'
 type ProfileScreenNavigationProp = NativeStackNavigationProp<MyTrainingsTrainerParamList>
 
 const TrainerMyTrainingsScreen: React.FC = (): React.ReactElement => {
+  const { t } = useTranslation()
+
   const { user } = useAuthContext()
   const { myTrainerTrainings } = useAppSelector(selectMyTrainings)
+
   const navigation = useNavigation<ProfileScreenNavigationProp>()
 
   const [getTrainingLearners] = useHttpRequest(GetTrainerTrainings, { action: setMyTrainerTrainings })
@@ -52,7 +56,7 @@ const TrainerMyTrainingsScreen: React.FC = (): React.ReactElement => {
         <NoData />
       ) : (
         <>
-          <Text style={styles.title}>Training List</Text>
+          <Text style={styles.title}>{t('trainerTrainings:trainingList')}</Text>
           <FlatList
             data={myTrainerTrainings}
             keyExtractor={item => item.id.toString()}

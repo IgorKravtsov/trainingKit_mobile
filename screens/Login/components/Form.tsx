@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Alert, StyleSheet, View } from 'react-native'
 import Button from '../../../components/Button/Button'
 import Input from '../../../components/Input/Input'
@@ -11,6 +12,8 @@ interface FormProps {
 }
 
 const Form: React.FC<FormProps> = ({ onSubmit }): React.ReactElement => {
+  const { t } = useTranslation()
+
   const [email, setEmail] = useState('l@l.com')
   const [password, setPassword] = useState('123')
 
@@ -25,10 +28,10 @@ const Form: React.FC<FormProps> = ({ onSubmit }): React.ReactElement => {
 
   return (
     <View style={styles.container}>
-      <Input value={email} onChangeText={text => setEmail(text)} label='Email' autoCapitalize='none' />
-      <Input value={password} onChangeText={text => setPassword(text)} label='Password' autoCapitalize='none' />
+      <Input value={email} onChangeText={text => setEmail(text)} label={t('login:emailInput.label')} autoCapitalize='none' />
+      <Input value={password} onChangeText={text => setPassword(text)} label={t('login:passwordInput.label')} autoCapitalize='none' />
       <Button style={styles.btnContainer} onPress={handleSubmit}>
-        LOGIN
+        {t('login:btnLabel')}
       </Button>
     </View>
   )

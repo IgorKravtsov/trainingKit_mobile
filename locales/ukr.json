@@ -1,0 +1,75 @@
+{
+  "home": {
+    "title": "Домашня сторінка",
+    "content": "Домашня сторінка"
+  },
+  "settings": {
+    "title": "Налаштування",
+    "langProps": {
+      "title": "Налаштування мови",
+      "ukr": "Українська",
+      "eng": "Англійська",
+      "logoutLabel": "ВИЙТИ"
+    }
+  },
+  "myTrainings": {
+    "title": "Мої тренування"
+  },
+  "learnerTrainings": {
+    "bottomTitle": "Я - учень",
+    "noData": "Схоже, даних ще немає",
+    "markVisiting": "Відмітитись",
+    "wrongTime": "Не можна",
+    "markedAlready": "Вже відмічені"
+  },
+  "trainerTrainings": {
+    "bottomTitle": "Я - тренер",
+    "trainingList": "Список тренувань",
+    "gym": "Зал"
+  },
+  "training": {
+    "title": "Тренування",
+    "learnersList": "Учні тренування",
+    "learnerNameTitle": "Ім'я",
+    "learnerEmailTitle": "Пошта"
+  },
+  "register": {
+    "title": "Реєстрація",
+    "nameInput": {
+      "label": "Ім'я",
+      "placeholder": "наприклад, Петро"
+    },
+    "lastNameInput": {
+      "label": "Прізвище",
+      "placeholder": "наприклад, Пупкін"
+    },
+    "emailInput": {
+      "label": "Пошта",
+      "placeholder": "myfantasticemail@mail.com"
+    },
+    "passwordInput": {
+      "label": "Пароль"
+    },
+    "confirmPasswordInput": {
+      "label": "Підтвердіть пароль"
+    },
+    "organizationInput": {
+      "label": "Організація"
+    },
+    "dobInput": {
+      "label": "Дата народження"
+    },
+    "btnLabel": "РЕЄСТРАЦІЯ"
+  },
+  "login": {
+    "title": "Вхід",
+    "emailInput": {
+      "label": "Пошта",
+      "placeholder": "myfantasticemail@mail.com"
+    },
+    "passwordInput": {
+      "label": "Пароль"
+    },
+    "btnLabel": "УВІЙТИ"
+  }
+}

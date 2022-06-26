@@ -1,5 +1,7 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+
 import { darkTheme, ScreenNames } from '../../common'
 import TrainerTrainingScreen from '../../screens/MyTrainings/Trainer-training-screen/TrainerTraining.screen'
 import TrainerMyTrainingsScreen from '../../screens/MyTrainings/Trainer-screen/TrainerMyTrainings.screen'
@@ -7,6 +9,8 @@ import TrainerMyTrainingsScreen from '../../screens/MyTrainings/Trainer-screen/T
 const Stack = createNativeStackNavigator()
 
 const TrainerMyTrainingsStack: React.FC = (): React.ReactElement => {
+  const { t } = useTranslation()
+
   return (
     <Stack.Navigator
       screenOptions={{
@@ -19,7 +23,7 @@ const TrainerMyTrainingsStack: React.FC = (): React.ReactElement => {
         name={ScreenNames.MyTrainingsTrainerTraining}
         component={TrainerTrainingScreen}
         options={{
-          title: 'Training',
+          title: t('training:title'),
           headerStyle: { backgroundColor: darkTheme.headerBackground },
           headerTintColor: darkTheme.textMain,
         }}

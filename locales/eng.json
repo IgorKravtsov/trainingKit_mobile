@@ -1,0 +1,76 @@
+{
+  "home": {
+    "title": "Home",
+    "content": "HOME PAGE"
+  },
+  "settings": {
+    "title": "Settings",
+    "langProps": {
+      "title": "Change language",
+      "ukr": "Ukrainian",
+      "eng": "English",
+      "logoutLabel": "LOGOUT"
+    }
+  },
+  "myTrainings": {
+    "title": "My trainings"
+  },
+
+  "learnerTrainings": {
+    "bottomTitle": "I am learner",
+    "noData": "Seems like there is no data",
+    "markVisiting": "Mark",
+    "wrongTime": "Wrong time",
+    "markedAlready": "Already marked"
+  },
+  "trainerTrainings": {
+    "bottomTitle": "I am trainer",
+    "trainingList": "Training List",
+    "gym": "Gym"
+  },
+  "training": {
+    "title": "Training",
+    "learnersList": "Learners of training",
+    "learnerNameTitle": "Name",
+    "learnerEmailTitle": "Email"
+  },
+  "register": {
+    "title": "Register",
+    "nameInput": {
+      "label": "Name",
+      "placeholder": "e.g. John"
+    },
+    "lastNameInput": {
+      "label": "Last name",
+      "placeholder": "e.g. Doe"
+    },
+    "emailInput": {
+      "label": "Email",
+      "placeholder": "myfantasticemail@mail.com"
+    },
+    "passwordInput": {
+      "label": "Password"
+    },
+    "confirmPasswordInput": {
+      "label": "Confirm password"
+    },
+    "organizationInput": {
+      "label": "Organization"
+    },
+    "dobInput": {
+      "label": "Date of birth"
+    },
+    "btnLabel": "REGISTER"
+  },
+  "login": {
+    "title": "Login",
+    "emailInput": {
+      "label": "Email",
+      "placeholder": "myfantasticemail@mail.com"
+    },
+    "passwordInput": {
+      "label": "Password"
+    },
+    "btnLabel": "LOGIN"
+  }
+}

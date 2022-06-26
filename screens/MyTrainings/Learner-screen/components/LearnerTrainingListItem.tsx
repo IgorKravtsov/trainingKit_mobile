@@ -8,6 +8,7 @@ import { formatDate, formatTime } from '../../../../util'
 import Button from '../../../../components/Button/Button'
 import TrainersItem from './TrainersItem'
 import { darkTheme } from '../../../../common'
+import { useTranslation } from 'react-i18next'
 
 interface LearnerTrainingListItemProps {
   item: Training
@@ -15,6 +16,7 @@ interface LearnerTrainingListItemProps {
 }
 
 const LearnerTrainingListItem: React.FC<LearnerTrainingListItemProps> = ({ gymImg, item }): React.ReactElement => {
+  const { t } = useTranslation()
   const isGymImg = !!gymImg
 
   const title = item.title.length > 24 ? item.title.substring(0, 24) + '...' : item.title
@@ -31,22 +33,22 @@ const LearnerTrainingListItem: React.FC<LearnerTrainingListItemProps> = ({ gymIm
     const { canBeVisited } = training
 
     if (typeof canBeVisited === 'boolean') {
-      return 'Mark'
-      // return t('myTrainings:nearest.markVisiting')
+      // return 'Mark'
+      return t('learnerTrainings:markVisiting')
     }
 
     switch (canBeVisited?.type) {
       case CannotVisitTrainingType.Time:
-        // return t('myTrainings:nearest.wrongTime')
-        return 'Wrong time'
+        return t('learnerTrainings:wrongTime')
+      // return 'Wrong time'
 
       case CannotVisitTrainingType.AlreadyMarked:
-        // return t('myTrainings:nearest.markedAlready')
-        return 'Already marked'
+        return t('learnerTrainings:markedAlready')
+      // return 'Already marked'
 
       default:
-        // return t('myTrainings:nearest.markVisiting')
-        return 'Mark'
+        return t('learnerTrainings:markVisiting')
+      // return 'Mark'
     }
   }
 

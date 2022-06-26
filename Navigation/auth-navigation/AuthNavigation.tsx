@@ -1,5 +1,6 @@
-import { createDrawerNavigator } from '@react-navigation/drawer'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
+import { createDrawerNavigator } from '@react-navigation/drawer'
 
 import { darkTheme, ScreenNames } from '../../common'
 
@@ -10,6 +11,8 @@ import MyTrainingsTabs from './MyTrainingsTabs'
 const Drawer = createDrawerNavigator()
 
 const AuthNavigation: React.FC = (): React.ReactElement => {
+  const { t } = useTranslation()
+
   return (
     <Drawer.Navigator
       screenOptions={{
@@ -26,21 +29,21 @@ const AuthNavigation: React.FC = (): React.ReactElement => {
         name={ScreenNames.Home}
         component={HomeScreen}
         options={{
-          title: 'Home',
+          title: t('home:title'),
         }}
       />
       <Drawer.Screen
         name={ScreenNames.MyTrainings}
         component={MyTrainingsTabs}
         options={{
-          title: 'My trainings',
+          title: t('myTrainings:title'),
         }}
       />
       <Drawer.Screen
         name={ScreenNames.Settings}
         component={SettingsScreen}
         options={{
-          title: 'Settings',
+          title: t('settings:title'),
         }}
       />
     </Drawer.Navigator>
