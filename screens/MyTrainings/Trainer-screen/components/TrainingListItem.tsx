@@ -2,33 +2,30 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
-import { PartTraining } from '../../../../api/training/types'
+import { Training } from '../../../../api/training/types'
 import { Id } from '../../../../api/user/types'
 import { darkTheme } from '../../../../common'
+import { formatDate, formatTime } from '../../../../util'
 
 interface TrainingListItemProps {
-  item: PartTraining
+  training: Training
   onPress?: (id: Id) => void
 }
 
-const TrainingListItem: React.FC<TrainingListItemProps> = ({ item, onPress }): React.ReactElement => {
+const TrainingListItem: React.FC<TrainingListItemProps> = ({ training, onPress }): React.ReactElement => {
   const { t } = useTranslation()
-
-  const strDate = item.trainingDateTime as string
-  const date = strDate.split(' ')[0]
-  const time = strDate.split(' ')[1].substring(0, 5)
 
   const handlePress = (id: Id) => {
     onPress && onPress(id)
   }
 
   return (
-    <TouchableOpacity style={styles.container} onPress={() => handlePress(item.id)}>
+    <TouchableOpacity style={styles.container} onPress={() => handlePress(training.id)}>
       <Text style={styles.title}>
-        {t('trainerTrainings:gym')}: {item.title}
+        {t('trainerTrainings:trainingTitle')}: {training.title}
       </Text>
       <Text style={styles.date}>
-        {date} - {time}
+        {formatDate(training.trainingDateTime)} - {formatTime(training.trainingDateTime)}
       </Text>
     </TouchableOpacity>
   )
@@ -40,6 +37,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 25,
+    backgroundColor: darkTheme.primaryContrast,
+    padding: 20,
+    borderRadius: 10,
   },
   title: {
     color: darkTheme.textMain,

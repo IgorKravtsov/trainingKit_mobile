@@ -1,14 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { GymTraining, PartTraining } from '../../api/training/types'
+import { GymTraining, PartTraining, Training } from '../../api/training/types'
 import { RootState } from '../store'
 
 interface MyTrainingsState {
   myLearnerTrainings: GymTraining[]
-  myTrainerTrainings: PartTraining[]
+  oldMyTrainerTrainings: PartTraining[]
+  myTrainerTrainings: Training[]
 }
 
 const initialState: MyTrainingsState = {
   myLearnerTrainings: [],
+  oldMyTrainerTrainings: [],
   myTrainerTrainings: [],
 }
 
@@ -16,15 +18,18 @@ const myTrainings = createSlice({
   name: 'myTrainings',
   initialState,
   reducers: {
-    setMyLearnerTrainings(state, action: PayloadAction<GymTraining[]>) {
+    setOldMyLearnerTrainings(state, action: PayloadAction<GymTraining[]>) {
       state.myLearnerTrainings = action.payload
     },
-    setMyTrainerTrainings(state, action: PayloadAction<PartTraining[]>) {
+    setOldMyTrainerTrainings(state, action: PayloadAction<PartTraining[]>) {
+      state.oldMyTrainerTrainings = action.payload.reverse()
+    },
+    setMyTrainerTrainings(state, action: PayloadAction<Training[]>) {
       state.myTrainerTrainings = action.payload.reverse()
     },
   },
 })
 
-export const { setMyLearnerTrainings, setMyTrainerTrainings } = myTrainings.actions
+export const { setOldMyLearnerTrainings, setOldMyTrainerTrainings, setMyTrainerTrainings } = myTrainings.actions
 export const myTrainingsReducer = myTrainings.reducer
 export const selectMyTrainings = (state: RootState) => state.myTrainings

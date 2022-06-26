@@ -4,6 +4,7 @@ import {
   CreateOneTrainingRequest,
   GetLearnerTrainingHistoryRequest,
   GetLearnerTrainingHistoryResponse,
+  GetTrainerTrainingsRequest,
   GetTrainingLearnersRequest,
   GetUserTrainingsRequest,
   GetUserTrainingsResponse,
@@ -34,5 +35,10 @@ export const GetTrainingLearners = async (request: GetTrainingLearnersRequest): 
 
 export const CreateOneTraining = async (request: CreateOneTrainingRequest): Promise<Training> => {
   const { data } = await $api.post<Training>('training/create', request)
+  return data
+}
+
+export const GetTrainerTrainings = async (request: GetTrainerTrainingsRequest): Promise<Training[]> => {
+  const { data } = await $api.post<Training[]>('training/get-trainer-trainings', request)
   return data
 }

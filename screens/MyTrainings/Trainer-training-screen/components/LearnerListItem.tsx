@@ -29,9 +29,12 @@ export default LearnerListItem
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: '50%',
+    width: '80%',
     marginTop: 50,
     backgroundColor: darkTheme.primaryContrast,
+    paddingVertical: 20,
+    paddingHorizontal: 10,
+    borderRadius: 10,
   },
   name: {
     color: darkTheme.textMain,

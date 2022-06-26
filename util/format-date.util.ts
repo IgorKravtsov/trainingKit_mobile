@@ -3,7 +3,7 @@ import { format } from 'date-fns'
 export const formatDate = (
   // locale: Locale,
   date?: Date | string,
-  formatString = 'dd MMMM yyyy'
+  formatString = 'dd-MM-yyyy'
 ): string => {
   if (!date) return ''
   if (typeof date === 'string') date = new Date(date)

@@ -7,7 +7,7 @@ import { useAuthContext } from '../../../components/AuthProvider/AuthProvider'
 import { useHttpRequest } from '../../../hooks'
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks'
 import { hideLoading, showLoading } from '../../../redux/slices/loading-indicator.slice'
-import { selectMyTrainings, setMyLearnerTrainings } from '../../../redux/slices/myTrainings.slice'
+import { selectMyTrainings, setOldMyLearnerTrainings } from '../../../redux/slices/myTrainings.slice'
 import { transformMyTrainingsToSectionData } from '../../../util'
 import NoData from '../components/NoData'
 import LearnerTrainingListItem from './components/LearnerTrainingListItem'
@@ -40,7 +40,7 @@ const LearnerMyTrainingsScreen: React.FC = (): React.ReactElement => {
       startDate: startDate.toISOString().substring(0, 10),
       endDate: endDate.toISOString().substring(0, 10),
     })
-    response && dispatch(setMyLearnerTrainings(response.trainings))
+    response && dispatch(setOldMyLearnerTrainings(response.trainings))
   }
 
   const markVisit = useCallback(
@@ -55,7 +55,7 @@ const LearnerMyTrainingsScreen: React.FC = (): React.ReactElement => {
         startDate: startDate.toISOString().substring(0, 10),
         endDate: endDate.toISOString().substring(0, 10),
       })
-      response && dispatch(setMyLearnerTrainings(response.trainings))
+      response && dispatch(setOldMyLearnerTrainings(response.trainings))
     },
     [user, markVisitingTraining, getUserTrainings]
   )

@@ -5,13 +5,17 @@ import { useTranslation } from 'react-i18next'
 import { RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native'
 import { FlatList } from 'react-native-gesture-handler'
 
+import { GetTrainerTrainings } from '../../../api/training/training'
 import { Id } from '../../../api/user/types'
-import { GetTrainerTrainings } from '../../../api/user/user'
-import { darkTheme, MyTrainingsTrainerParamList, ScreenNames } from '../../../common'
+
 import { useAuthContext } from '../../../components/AuthProvider/AuthProvider'
+
 import { useHttpRequest } from '../../../hooks'
 import { useAppSelector } from '../../../redux/hooks'
 import { selectMyTrainings, setMyTrainerTrainings } from '../../../redux/slices/myTrainings.slice'
+
+import { darkTheme, MyTrainingsTrainerParamList, ScreenNames } from '../../../common'
+
 import NoData from '../components/NoData'
 import TrainingListItem from './components/TrainingListItem'
 
@@ -50,22 +54,22 @@ const TrainerMyTrainingsScreen: React.FC = (): React.ReactElement => {
   }, [])
 
   return (
-    // <ScrollView contentContainerStyle={styles.container} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
-    <View style={styles.container}>
-      {myTrainerTrainings.length === 0 ? (
-        <NoData />
-      ) : (
-        <>
-          <Text style={styles.title}>{t('trainerTrainings:trainingList')}</Text>
-          <FlatList
-            data={myTrainerTrainings}
-            keyExtractor={item => item.id.toString()}
-            renderItem={({ item }) => <TrainingListItem item={item} onPress={onPress} />}
-          />
-        </>
-      )}
-      {/* </ScrollView> */}
-    </View>
+    <ScrollView contentContainerStyle={styles.container} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
+      <View style={styles.container}>
+        {myTrainerTrainings.length === 0 ? (
+          <NoData />
+        ) : (
+          <>
+            <Text style={styles.title}>{t('trainerTrainings:trainingList')}</Text>
+            <FlatList
+              data={myTrainerTrainings}
+              keyExtractor={item => item.id.toString()}
+              renderItem={({ item }) => <TrainingListItem training={item} onPress={onPress} />}
+            />
+          </>
+        )}
+      </View>
+    </ScrollView>
   )
 }
 
