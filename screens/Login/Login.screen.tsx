@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { StyleSheet, View } from 'react-native'
 
 import { Login } from '../../api/auth/auth.api'
@@ -15,6 +16,7 @@ import Form from './components/Form'
 import { SubmitLogin } from './interfaces'
 
 const LoginScreen: React.FC = (): React.ReactElement => {
+  const { i18n } = useTranslation()
   const [login] = useHttpRequest(Login, { action: setUser })
 
   const onSubmit = async (data: SubmitLogin) => {
@@ -22,6 +24,7 @@ const LoginScreen: React.FC = (): React.ReactElement => {
     if (response) {
       const { email, password } = data
       await saveUserToStorage({ email, password })
+      i18n.changeLanguage(response.lang)
     }
   }
 

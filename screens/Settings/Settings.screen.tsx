@@ -14,10 +14,11 @@ import { logOutUser } from '../../redux/slices/user.slice'
 import Button from '../../components/Button/Button'
 import SubTitle from './components/SubTitle'
 import { useAuthContext } from '../../components/AuthProvider/AuthProvider'
+import { UpdateLanguage } from '../../api/user/user'
 
 const SettingsScreen: React.FC = (): React.ReactElement => {
   const { t, i18n } = useTranslation()
-  const { isAuth } = useAuthContext()
+  const { isAuth, user } = useAuthContext()
 
   const [logout] = useHttpRequest(Logout)
   const dispatch = useAppDispatch()
@@ -28,8 +29,13 @@ const SettingsScreen: React.FC = (): React.ReactElement => {
     dispatch(logOutUser())
   }
 
+  const updateLanguage = async (lang: LanguageType) => {
+    await UpdateLanguage(user?.id || 0, { lang })
+  }
+
   const changeLanguageHandler = (lang: LanguageType) => {
     i18n.changeLanguage(lang)
+    isAuth && updateLanguage(lang)
   }
 
   return (
