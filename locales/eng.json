@@ -60,7 +60,11 @@
     "dobInput": {
       "label": "Date of birth"
     },
-    "btnLabel": "REGISTER"
+    "btnLabel": "REGISTER",
+    "invalidData": {
+      "title": "Invalid data",
+      "message": "Check your inputs please"
+    }
   },
   "login": {
     "title": "Login",
@@ -71,6 +75,10 @@
     "passwordInput": {
       "label": "Password"
     },
-    "btnLabel": "LOGIN"
+    "btnLabel": "LOGIN",
+    "invalidData": {
+      "title": "Invalid data",
+      "message": "Check your inputs please"
+    }
   }
 }

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { ScrollView, StyleSheet, View } from 'react-native'
 
 import { useHttpRequest } from '../../hooks'
 import { useAppDispatch } from '../../redux/hooks'
@@ -40,9 +40,9 @@ const RegisterScreen: React.FC = (): React.ReactElement => {
   }, [])
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container} contentContainerStyle={{ justifyContent: 'center', paddingBottom: 20 }}>
       <Form onSubmit={onSubmit} />
-    </View>
+    </ScrollView>
   )
 }
 
@@ -52,6 +52,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingVertical: 20,
-    justifyContent: 'center',
   },
 })

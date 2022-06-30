@@ -67,7 +67,11 @@ const LearnerMyTrainingsScreen: React.FC = (): React.ReactElement => {
   }, [])
 
   return (
-    <ScrollView style={styles.container} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
+    <ScrollView
+      style={styles.container}
+      refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+      contentContainerStyle={{ paddingBottom: 100 }}
+    >
       {myLearnerTrainings.length === 0 ? (
         <NoDataText text={t('learnerTrainings:noData')} />
       ) : (

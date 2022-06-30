@@ -19,8 +19,10 @@ const Form: React.FC<FormProps> = ({ onSubmit }): React.ReactElement => {
 
   const handleSubmit = () => {
     //validation
-    if (!checkIsEmail(email)) {
-      Alert.alert('Invalid data', 'Check your data')
+    const isEmailValid = email.length > 4
+    const isPasswordValid = password.length > 0
+    if (!isEmailValid || !isPasswordValid) {
+      Alert.alert(t('login:invalidData.title'), t('login:invalidData.message'))
     }
 
     onSubmit({ email, password })

@@ -50,7 +50,7 @@ const Form: React.FC<FormProps> = ({ onSubmit }): React.ReactElement => {
     const isOrganizationValid = !!selectedOrganization
 
     if (!isNameValid || !isLastNameValid || !isEmailValid || !isPassValid || !isConfirmPassValid || !isOrganizationValid) {
-      Alert.alert('Invalid data', 'Check your data')
+      Alert.alert(t('register:invalidData.title'), t('register:invalidData.message'))
       return
     }
 
