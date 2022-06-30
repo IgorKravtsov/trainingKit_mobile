@@ -1,8 +1,8 @@
+import React, { useEffect, useState } from 'react'
+import { RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native'
 import { FlatList } from 'react-native-gesture-handler'
 
 import { GetTrainerTrainings } from '../../../api/training/training'
@@ -16,7 +16,7 @@ import { selectMyTrainings, setMyTrainerTrainings } from '../../../redux/slices/
 
 import { darkTheme, MyTrainingsTrainerParamList, ScreenNames } from '../../../common'
 
-import NoData from '../components/NoData'
+import NoDataText from '../components/NoDataText'
 import TrainingListItem from './components/TrainingListItem'
 
 type ProfileScreenNavigationProp = NativeStackNavigationProp<MyTrainingsTrainerParamList>
@@ -28,7 +28,6 @@ const TrainerMyTrainingsScreen: React.FC = (): React.ReactElement => {
   const { myTrainerTrainings } = useAppSelector(selectMyTrainings)
 
   const navigation = useNavigation<ProfileScreenNavigationProp>()
-
   const [getTrainingLearners] = useHttpRequest(GetTrainerTrainings, { action: setMyTrainerTrainings })
 
   const [refreshing, setRefreshing] = useState(false)
@@ -57,7 +56,7 @@ const TrainerMyTrainingsScreen: React.FC = (): React.ReactElement => {
     <ScrollView contentContainerStyle={styles.container} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
       <View style={styles.container}>
         {myTrainerTrainings.length === 0 ? (
-          <NoData />
+          <NoDataText text={t('learnerTrainings:noData')} />
         ) : (
           <>
             <Text style={styles.title}>{t('trainerTrainings:trainingList')}</Text>

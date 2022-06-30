@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { RefreshControl, ScrollView, SectionList, StyleSheet, Text, View } from 'react-native'
 
 import { GetUserTrainings, MarkVisitingTraining } from '../../../api/training/training'
@@ -6,16 +7,17 @@ import { Id } from '../../../api/user/types'
 import { useAuthContext } from '../../../components/AuthProvider/AuthProvider'
 import { useHttpRequest } from '../../../hooks'
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks'
-import { hideLoading, showLoading } from '../../../redux/slices/loading-indicator.slice'
 import { selectMyTrainings, setOldMyLearnerTrainings } from '../../../redux/slices/myTrainings.slice'
 import { transformMyTrainingsToSectionData } from '../../../util'
-import NoData from '../components/NoData'
+import NoDataText from '../components/NoDataText'
 import LearnerTrainingListItem from './components/LearnerTrainingListItem'
 import SectionTitle from './components/SectionTitle'
 
 const LearnerMyTrainingsScreen: React.FC = (): React.ReactElement => {
   const { user } = useAuthContext()
   const { myLearnerTrainings } = useAppSelector(selectMyTrainings)
+
+  const { t } = useTranslation()
 
   const [getUserTrainings] = useHttpRequest(GetUserTrainings)
   const [markVisitingTraining] = useHttpRequest(MarkVisitingTraining)
@@ -67,7 +69,7 @@ const LearnerMyTrainingsScreen: React.FC = (): React.ReactElement => {
   return (
     <ScrollView style={styles.container} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
       {myLearnerTrainings.length === 0 ? (
-        <NoData />
+        <NoDataText text={t('learnerTrainings:noData')} />
       ) : (
         // <Text>NO DATA EPT</Text>
         <SectionList

@@ -12,6 +12,7 @@ import { Id } from '../../../api/user/types'
 import LearnerList from './components/LearnerList'
 import Title from '../../../components/Title/Title'
 import { useTranslation } from 'react-i18next'
+import NoDataText from '../components/NoDataText'
 
 type RouteParams = RouteProp<MyTrainingsTrainerParamList, ScreenNames.MyTrainingsTrainerTraining>
 
@@ -40,7 +41,7 @@ const TrainerTrainingScreen: React.FC = (): React.ReactElement => {
         {t('training:learnersList')} {trainingId}
       </Title>
       <View style={styles.listContainer}>
-        <LearnerList learners={learnerList} />
+        {learnerList.length > 0 ? <LearnerList learners={learnerList} /> : <NoDataText style={styles.noData} text={t('learnerTrainings:noData')} />}
       </View>
     </ScrollView>
   )
@@ -56,5 +57,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  noData: {
+    marginTop: 20,
   },
 })
